@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Backbone App</title>
+		<script type="text/javascript" src="./jquery.js"></script>
+		<script type="text/javascript" src="./underscore.js"></script>
+		<script type="text/javascript" src="./backbone.js"></script>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var Person = Backbone.Model.extend({
+			});
+			var People = Backbone.Collection.extend({
+				model: Person,
+				url: 'http://localhost:3002/people'
+			});
+
+			var people = new People();
+
+			//fetch entire Collection -->fetch() --> GET request
+			// people.fetch({
+			// 	success: function(data) {
+			// 		console.log(JSON.stringify(data.models));
+			// 	}
+			// });
+			
+
+			// fetch single model  --> fetch() --> GET request like http://localhost:3002/people/3 
+			// var person = new Person({'id':3});
+			// people.add(person);
+			// person.fetch({
+			// 	success: function(personObj) {
+			// 		console.log(personObj);
+			// 	}
+			// });
+			
+			// add new model to collection --> save() --> POST request for new record insert
+			// var person = new Person({'name':'New Person',age:34});
+			// people.add(person);
+			// person.save();
+
+			// var person = new Person({id:5});
+			// people.add(person);
+			// person.fetch({
+			// 	success: function (personObj) {
+			// 		personObj.set('age',46);
+			// 		personObj.save(); // issues a PUT method for update since its already existind id/record
+			// 	}
+			// });
+
+			var person = new Person({'id':5});
+			people.add(person);
+			person.destroy(); // --> DELETE method to delete model and remove it from the collection
+		</script>
+	</body>
+</html>
